@@ -4,6 +4,7 @@ import usersRouter from './routes/users'
 import activitiesRouter from './routes/activities'
 import teamsRouter from './routes/teams'
 import leaderboardRouter from './routes/leaderboard'
+import workoutsRouter from './routes/workouts'
 
 const app = express()
 const PORT = process.env.PORT || 8000
@@ -24,6 +25,7 @@ app.use('/api/users', usersRouter)
 app.use('/api/activities', activitiesRouter)
 app.use('/api/teams', teamsRouter)
 app.use('/api/leaderboard', leaderboardRouter)
+app.use('/api/workouts', workoutsRouter)
 
 async function start() {
   try {
