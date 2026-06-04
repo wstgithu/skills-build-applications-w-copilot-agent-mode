@@ -90,14 +90,14 @@ jobs:
             step_number: 4
             results_table:
               - description: "Check index.ts for process.env.PORT"
-                passed: ${{ steps.check-port-env.outcome == 'success' }}
+                passed: ${{ steps.check-port-env.conclusion == 'success' }}
               - description: "Check index.ts for app.listen(PORT)"
-                passed: ${{ steps.check-app-listen.outcome == 'success' }}
+                passed: ${{ steps.check-app-listen.conclusion == 'success' }}
 
       # END: Check practical exercise
 
       - name: Fail job if not all checks passed
-        if: steps.check-port-env.outcome == 'failure' || steps.check-app-listen.outcome == 'failure'
+        if: steps.check-port-env.conclusion == 'failure' || steps.check-app-listen.conclusion == 'failure'
         run: exit 1
 
   post_next_step_content:
