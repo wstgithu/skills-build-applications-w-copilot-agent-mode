@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { API_BASE_URL, fetchUsers, fetchActivities } from './api'
 
+// OctoFit Tracker main app component with API data fetching
 export default function App() {
   const [users, setUsers] = useState([])
   const [activities, setActivities] = useState([])
