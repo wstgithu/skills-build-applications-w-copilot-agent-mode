@@ -6,7 +6,7 @@ import teamsRouter from './routes/teams'
 import leaderboardRouter from './routes/leaderboard'
 import workoutsRouter from './routes/workouts'
 
-// Backend entrypoint for OctoFit tracker
+// OctoFit backend API server entrypoint
 
 const app = express()
 const PORT = process.env.PORT || 8000
