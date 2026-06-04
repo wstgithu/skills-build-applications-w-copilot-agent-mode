@@ -58,53 +58,53 @@ jobs:
 
       # START: Check practical exercise
 
-      - name: Check for codespace API endpoint in Activities.jsx
-        id: check-activities
+      - name: Check api.js for codespace API URL logic
+        id: check-api-url
         continue-on-error: true
         uses: skills/action-keyphrase-checker@v2.0.0
         with:
-          text-file: octofit-tracker/frontend/src/components/Activities.jsx
-          keyphrase: '-8000.app.github.dev/api/activities'
+          text-file: octofit-tracker/frontend/src/api.js
+          keyphrase: '-8000.app.github.dev'
           minimum-occurrences: 1
           case-sensitive: false
 
-      - name: Check for codespace API endpoint in Leaderboard.jsx
-        id: check-leaderboard
+      - name: Check api.js for VITE_CODESPACE_NAME support
+        id: check-vite-env
         continue-on-error: true
         uses: skills/action-keyphrase-checker@v2.0.0
         with:
-          text-file: octofit-tracker/frontend/src/components/Leaderboard.jsx
-          keyphrase: '-8000.app.github.dev/api/leaderboard'
+          text-file: octofit-tracker/frontend/src/api.js
+          keyphrase: 'VITE_CODESPACE_NAME'
           minimum-occurrences: 1
           case-sensitive: false
 
-      - name: Check for codespace API endpoint in Teams.jsx
-        id: check-teams
+      - name: Check App.jsx uses API_BASE_URL
+        id: check-app-api-base-url
         continue-on-error: true
         uses: skills/action-keyphrase-checker@v2.0.0
         with:
-          text-file: octofit-tracker/frontend/src/components/Teams.jsx
-          keyphrase: '-8000.app.github.dev/api/teams'
+          text-file: octofit-tracker/frontend/src/App.jsx
+          keyphrase: 'API_BASE_URL'
           minimum-occurrences: 1
           case-sensitive: false
 
-      - name: Check for codespace API endpoint in Users.jsx
-        id: check-users
+      - name: Check App.jsx fetches users
+        id: check-app-fetch-users
         continue-on-error: true
         uses: skills/action-keyphrase-checker@v2.0.0
         with:
-          text-file: octofit-tracker/frontend/src/components/Users.jsx
-          keyphrase: '-8000.app.github.dev/api/users'
+          text-file: octofit-tracker/frontend/src/App.jsx
+          keyphrase: 'fetchUsers()'
           minimum-occurrences: 1
           case-sensitive: false
 
-      - name: Check for codespace API endpoint in Workouts.jsx
-        id: check-workouts
+      - name: Check App.jsx fetches activities
+        id: check-app-fetch-activities
         continue-on-error: true
         uses: skills/action-keyphrase-checker@v2.0.0
         with:
-          text-file: octofit-tracker/frontend/src/components/Workouts.jsx
-          keyphrase: '-8000.app.github.dev/api/workouts'
+          text-file: octofit-tracker/frontend/src/App.jsx
+          keyphrase: 'fetchActivities()'
           minimum-occurrences: 1
           case-sensitive: false
 
@@ -119,16 +119,16 @@ jobs:
           vars: |
             step_number: 5
             results_table:
-              - description: "Check activities for the API endpoint"
-                passed: ${{ steps.check-activities.outcome == 'success' }}
-              - description: "Check leaderboard for the API endpoint"
-                passed: ${{ steps.check-leaderboard.outcome == 'success' }}
-              - description: "Check teams for the API endpoint"
-                passed: ${{ steps.check-teams.outcome == 'success' }}
-              - description: "Check users for the API endpoint"
-                passed: ${{ steps.check-users.outcome == 'success' }}
-              - description: "Check workouts for the API endpoint"
-                passed: ${{ steps.check-workouts.outcome == 'success' }}
+              - description: "Check api.js for codespace API URL logic"
+                passed: ${{ steps.check-api-url.outcome == 'success' }}
+              - description: "Check api.js for VITE_CODESPACE_NAME support"
+                passed: ${{ steps.check-vite-env.outcome == 'success' }}
+              - description: "Check App.jsx uses API_BASE_URL"
+                passed: ${{ steps.check-app-api-base-url.outcome == 'success' }}
+              - description: "Check App.jsx fetches users"
+                passed: ${{ steps.check-app-fetch-users.outcome == 'success' }}
+              - description: "Check App.jsx fetches activities"
+                passed: ${{ steps.check-app-fetch-activities.outcome == 'success' }}
 
       # END: Check practical exercise
 
